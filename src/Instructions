@@ -1,0 +1,680 @@
+Dragons Shoving Junk in Caves
+
+Overview:
+
+Y’all are dragons competing to assemble the highest value hoard. Players take turns to take precious polyominos out of the loot pit and add them to their hoard, as long as they fit within the cave.
+
+Components:
+
+Cave boards
+
+Initial Horde Cards
+
+Rock walls
+
+Precious Polyominos
+
+Score Cards (Dragon)
+
+
+Set up:
+
+Each player has a cave board. Players draw two of each initial horde and dragon cards and choose one of each. They draw an initial horde card and set up their hoard accordingly - cards tell where to place rock walls by placing their pegs in the holes in the board, and give a list of some initial treasures that will be counted towards the final score. Each horde card also has a number on it, determining player order - the player with the highest number goes first. Each player also draws a score card, which will determine how their horde will be scored at the end of the game. Precious polyominos are dumped in pile called the loot pit between all of the player’s boards.
+
+Player turn
+
+Each turn a player takes one precious polyomino out of the loot pit and places it on their cave board. Precious polyonominos can be rotated, but they cannot be flipped because they only have pegs to put in the board on one side. For a polyonomino to be fit into a player’s cave, every peg on the polyomino must be in a hole on the board. If a precious polyomino is added to a player’s cave it is counted as part of their horde.
+
+If a player is unable to fit anymore precious polyominos into their cave then their turn is skipped. The play may begin scoring their hoard at this point.
+
+The game ends when no player is able to add anymore precious polyominos to the hoard, either because their cave is full or because the loot pit is empty.
+
+Scoring:
+
+First, each player counts the number of each precious material in their hoard. Each precious polyomino is made up of cells, each cell having one peg and being one color. Color determines the precious material, and each cell a player has of a material in their horde counts towards one unit of it. Players also add any units determined by their starting treasure.
+
+Scoring is done according to the player’s score card and the number of each precious material they have in their hoard. The score card gives a score for each number of each previous material, and the scores of all precious materials are added together to give the player’s total score.
+
+
+Precious materials:
+
+Bronze - scales linearly, lowest value and found in easiest polyominos to fit.
+Silver - scales linearly
+Gold - scales linearly, highest value and found in the hardest polyominos to fit
+Artifacts - scales super linearly, on polyominos that don’t fit well together
+Gems - scales super linearly, on polyominos that fit well together
+Fossils - scales super linearly at first, then sub linearly
+
+Dragons:
+
+First Sample
+
+Bronze: 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38
+Silver: 0 7 14 21 28 35 42 49 56 63 70 77 84 91 98 105 112 119 126 133
+Gold: 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190
+Artifacts: 1 1 3 6 10 16 22 30 39 49 61 73 87 102 118 136 154 174 195 217
+Gems: 1 15 20 25 29 32 35 38 40 43 45 47 49 51 53 55 57 58 60 62
+Fossils: 1 2 5 10 16 24 33 43 53 64 76 87 98 108 118 127 135 141 146 149
+
+Second Sample
+
+Bronze: 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76
+Silver: 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95
+Gold: 0 7 14 21 28 35 42 49 56 63 70 77 84 91 98 105 112 119 126 133
+Artifacts: 1 1 2 4 7 11 15 20 26 33 41 49 58 68 79 91 103 116 130 145
+Gems: 1 11 15 18 21 23 25 27 29 31 32 34 35 37 38 39 41 42 43 44
+Fossils: 1 1 4 7 12 18 24 31 39 47 56 64 72 80 87 93 99 104 107 110
+
+Third Sample
+
+Bronze: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+Silver: 0 8 16 24 32 40 48 56 64 72 80 88 96 104 112 120 128 136 144 152
+Gold: 0 13 26 39 52 65 78 91 104 117 130 143 156 169 182 195 208 221 234 247
+Artifacts: 1 1 3 7 12 18 26 35 45 57 71 85 101 119 138 158 180 203 227 253
+Gems: 1 17 23 28 33 36 40 43 46 49 51 54 56 58 60 62 65 66 68 70
+Fossils: 1 2 6 11 19 29 39 51 64 77 91 104 117 130 142 152 162 170 175 179
+
+Caves:
+
+[
+    OOO
+
+   O
+
+O   O
+
+  O
+
+
+
+   O
+
+      O
+]
+Bronze: 2
+Silver: 0
+Gold: 0
+Artifacts: 2
+Gems: 1
+Fossils: 1
+
+Polys:
+
+fb
+ f
+ f
+
+
+
+f
+sff
+f
+
+
+
+  f
+  f
+ffg
+  f
+
+
+
+
+ff
+af
+ff
+
+
+
+
+
+bGG
+f
+
+
+
+ss
+ag
+a
+
+
+
+
+
+ b
+sbG
+
+
+
+  g
+ sG
+ G
+sa
+
+
+
+
+
+gsg
+  f
+ gG
+
+
+
+
+
+
+ G
+ab
+b
+
+
+
+  a
+aag
+ ba
+
+
+
+
+GG
+Gb
+
+
+
+aaG
+gs
+
+
+
+Gba
+ f
+
+
+
+ f
+ s
+aa
+ a
+
+
+
+
+abg
+bb
+G
+
+
+
+ s
+ ba
+ss
+
+
+
+ g
+ag
+gaa
+
+
+
+
+ s
+af
+ s
+ s
+
+
+
+as
+gga
+a
+
+
+
+
+
+
+b
+G
+b
+b
+
+
+
+g
+ga
+bag
+
+
+
+GG
+ G
+ G
+
+
+
+fsGa
+s
+
+
+
+
+
+
+bGb
+G
+
+
+
+
+
+ a
+ g
+agg
+ g
+
+
+
+
+sg
+f
+sb
+
+
+
+
+  b
+GbG
+
+
+
+ fg
+ssb
+
+
+
+sa
+ sg
+  g
+
+
+
+
+
+ g
+bb
+ s
+
+
+
+
+ bG
+bG
+
+______
+
+f
+b
+ff
+2x3
+
+fsf
+ ff
+3x2
+
+  f
+ fff
+fg
+4x3
+
+ f
+fa
+f
+ff
+2x4
+
+G
+GfG
+3x2
+
+bbaf
+4x1
+
+sass
+  g
+4x2
+
+ gG
+af
+ G
+ g
+3x4
+
+ s
+ba
+f
+2x3
+
+ f
+sbb
+3x2
+
+a g
+aaa
+ g
+3x3
+
+G
+g
+Gb
+2x3
+
+  g
+  s
+abs
+3x3
+
+s
+G
+b
+G
+1x4
+
+ags
+gg
+ G
+3x3
+
+f
+G
+bf
+2x3
+
+sb
+ b
+ G
+2x3
+
+g
+asa
+ a
+3x3
+
+bG
+ Ga
+3x2
+
+bss
+ as
+3x2
+
+  g
+abbG
+   a
+4x3
+
+ bs
+sgb
+ g
+3x3
+
+g
+a
+g
+ggs
+3x4
+
+ f
+Gf
+G
+2x3
+
+G
+G
+sG
+2x3
+
+fbg
+  f
+3x2
+
+ b
+ G
+sb
+2x3
+
+ f
+aa
+gG
+ G
+2x4
+
+ sf
+fsf
+3x2
+
+b
+b
+b
+b
+1x4
+
+f
+agb
+G G
+3x3
+
+ssf
+ a
+ g
+3x3
+
+f
+ggf
+  a
+  G
+3x4
+
+  f
+saf
+a
+3x3
+
+___
+
+BRONZE
+gb
+s
+G
+2x3
+
+ARTIFACTS
+aa
+ aa
+  s
+  s
+3x4
+
+FOSSILS
+af
+fa
+ f
+2x3
+
+BRONZE
+bG
+b
+b
+2x3
+
+GOLD
+g
+s
+gggg
+4x3
+
+GEMS
+b
+Gsf
+3x2
+
+GEMS
+b
+GG
+ s
+2x3
+
+FOSSILS
+  ga
+baf
+4x2
+
+GEMS
+Gb
+bb
+2x2
+
+FOSSILS
+fag
+  fa
+4x2
+
+SILVER
+G
+sfGg
+4x2
+
+SILVER
+sgf
+fa
+3x2
+
+SILVER
+  g
+ass
+ f
+3x3
+
+GEMS
+ f
+GGb
+3x2
+
+SILVER
+sg
+sb
+f
+2x3
+
+GEMS
+GGG
+G
+3x2
+
+BRONZE
+GGb
+f
+3x2
+
+SILVER
+sga
+ ga
+3x2
+
+BRONZE
+bss
+  b
+3x2
+
+GOLD
+ gg
+fgg
+  g
+3x3
+
+ARTIFACTS
+a
+aG
+Ga
+b
+2x4
+
+SILVER
+ssgb
+s
+4x2
+
+FOSSILS
+fg
+s
+f
+b
+2x4
+
+ARTIFACTS
+aG
+sa
+ a
+ g
+2x4
+
+FOSSILS
+ s
+ s
+fs
+ f
+2x4
+
+BRONZE
+ G
+gbb
+3x2
+
+FOSSILS
+ f
+ ff
+ss
+3x3
+
+BRONZE
+GGb
+  b
+3x2
+
+ARTIFACTS
+  s
+  b
+  a
+Ggb
+3x4
+
+ARTIFACTS
+a
+ba
+as
+ s
+2x4
+
+FOSSILS
+ gf
+agb
+3x2
+
+GEMS
+GaG
+ b
+3x2
+
+FOSSILS
+a
+gGb
+f
+3x3
+
+FOSSILS
+ s
+ f
+fs
+ a
+2x4

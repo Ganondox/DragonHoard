@@ -59,6 +59,7 @@ public class Cave {
                 for(int j = 0; j < p.getWidth(); j++){
                     if(p.getMaterial(j,i) != null) {
                         board[i + y][j + x] = p.getMaterial(j,i);
+                        incrementValue(p.getMaterial(j,i));
                     }
                 }
             }

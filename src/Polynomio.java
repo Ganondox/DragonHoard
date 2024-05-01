@@ -23,12 +23,23 @@ public class Polynomio {
 
 
     public Polynomio(int width, int height) {
+
         this.substance = new material[height][width];
+        id = count;
+        count++;
+
     }
 
     public Polynomio(material[][] substance) {
+
         this.substance = substance;
+        id = count;
+        count++;
     }
+
+    int id;
+
+    static int count = 0;
 
 
 
@@ -109,7 +120,7 @@ public class Polynomio {
     }
 
     public static char toText(material m){
-        if(m == null) return ' ';
+        if(m == null) return '.';
         switch (m){
             case bronze:
                 return 'b';
@@ -141,6 +152,7 @@ public class Polynomio {
             string += "\n";
         }
         string += getWidth() + "x" + getHeight();
+        string += "\n" + "id:" + id;
         return string;
     }
 }

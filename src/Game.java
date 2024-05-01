@@ -1,4 +1,3 @@
-import sun.awt.image.ImageWatched;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +24,7 @@ public class Game {
             }
             if(player.board.canAdd(loot, x, y)){
                 //player adds loot
+                System.out.println("ID: " + loot.id);
                 player.board.addPolynomio(loot, x, y);
                 System.out.println(player.name);
                 System.out.println(player.board);

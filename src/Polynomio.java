@@ -21,6 +21,9 @@ public class Polynomio {
         substance[y][x] = m;
     }
 
+    int id;
+
+    static int count = 0;
 
     public Polynomio(int width, int height) {
 
@@ -37,9 +40,7 @@ public class Polynomio {
         count++;
     }
 
-    int id;
 
-    static int count = 0;
 
 
 

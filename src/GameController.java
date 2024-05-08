@@ -24,10 +24,15 @@ public class GameController {
         List<Player> players = new LinkedList<>();
         Game game = new Game(loot,players);
         //generate players
-        for(int i = 0; i < 4; i++){
+        AI hom = new Human(game);
+        CaveFactory cf = new CaveFactory();
+        DragonFactory df = new DragonFactory();
+        hom.chooseComb(cf.MakeCave(), cf.MakeCave(), df.makeDragon(), df.makeDragon());
+        players.add(hom.player);
+        for(int i = 0; i < 3; i++){
             AI drag = new GreedyDragon(game);
-            CaveFactory cf = new CaveFactory();
-            DragonFactory df = new DragonFactory();
+            cf = new CaveFactory();
+            df = new DragonFactory();
             drag.chooseComb(cf.MakeCave(), cf.MakeCave(), df.makeDragon(), df.makeDragon());
             players.add(drag.player);
         }

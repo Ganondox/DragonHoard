@@ -24,9 +24,15 @@ public class Game {
             }
             if(player.board.canAdd(loot, x, y)){
                 //player adds loot
-                System.out.println("ID: " + loot.id);
-                player.board.addPolynomio(loot, x, y);
                 System.out.println(player.name);
+                System.out.println("Before:");
+                System.out.println(player.board);
+                System.out.println("Adding");
+                System.out.println(loot);
+                System.out.println("ID: " + loot.id);
+                System.out.println("at " + x +"," + y);
+                player.board.addPolynomio(loot, x, y);
+                System.out.println("After:");
                 System.out.println(player.board);
                 lootpit.remove(poly);
 

@@ -1,7 +1,7 @@
 public class Demo {
 
     public static void main(String args[]){
-        System.out.println("Begining Game");
+        System.out.println("Beginning Game");
         new GameController().runGame();
     }
 }

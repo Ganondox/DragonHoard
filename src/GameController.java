@@ -10,7 +10,7 @@ public class GameController {
         List<Polynomio> loot = new LinkedList<>();
         PolynomioFactory pf = new PolynomioFactory();
         while(pf.getBronze() < 26 || pf.getSilver() < 26 || pf.getGold() < 26 ||
-                pf.getArtifacts() < 26 || pf.getGems() < 26 | pf.getFossils() < 26 ){
+                pf.getArtifacts() < 26 || pf.getGems() < 26 || pf.getFossils() < 26 ){
             Polynomio poly = pf.makePolynomio();
             loot.add(poly);
             System.out.println(poly);
@@ -21,6 +21,7 @@ public class GameController {
 
             }
         }
+
         List<Player> players = new LinkedList<>();
         Game game = new Game(loot,players);
         //generate players

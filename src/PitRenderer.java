@@ -35,7 +35,7 @@ public class PitRenderer extends JComponent {
             PieceRenderer pr = new PieceRenderer( x + offset * PieceRenderer.CELL_SIZE, y + PieceRenderer.CELL_SIZE * (pieceMolder.size() - height), p);
             for (int i = 0; i < p.getHeight(); i++) {
                 for (int j = 0; j < p.getWidth(); j++) {
-                    pieceMolder.get(pieceMolder.size() - height + i)[j] = pr;
+                    if(p.substance[i][j] != null) pieceMolder.get(pieceMolder.size() - height + i)[j+offset] = pr;
                 }
             }
             offset += p.getWidth() + 1;
@@ -53,17 +53,22 @@ public class PitRenderer extends JComponent {
         for(int i = 0; i < pieces.length; i++){
             for(int j = 0; j < WIDTH; j++){
                 if((i + j)% 2 == 0){
-                    g.setColor(Color.WHITE);
+                    g.setColor(Color.GRAY);
                 } else {
                     g.setColor(Color.BLACK);
                 }
+                if(pieces[i][j] != null) g.setColor(Color.WHITE);
                 g.fillRect(x + j * PieceRenderer.CELL_SIZE, y + i * PieceRenderer.CELL_SIZE, PieceRenderer.CELL_SIZE, PieceRenderer.CELL_SIZE);
 
             }
         }
 
-        for(PieceRenderer p: renderers){
+        /*for(PieceRenderer p: renderers){
             p.paint(g);
         }
+
+         */
     }
+
+
 }

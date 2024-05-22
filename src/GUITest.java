@@ -13,6 +13,9 @@ public class GUITest  {
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Drawer draw = new Drawer();
+        frame.getContentPane().add(draw);
+
 
 
         Polynomio.material[][] m = new Polynomio.material[3][4];
@@ -30,8 +33,8 @@ public class GUITest  {
 
          System.out.println(p);
 
-        frame.getContentPane().add( pr);
-        frame.getContentPane().addMouseListener(new GUIController());
+       // frame.getContentPane().add( pr);
+
 
         //generate loot pile
         System.out.println("Admire the loot the dragons collected");
@@ -52,8 +55,23 @@ public class GUITest  {
             }
         }
 
+        PitRenderer pit = new PitRenderer(100, 20, loot);
+        draw.draw.add(pit);
 
-        frame.getContentPane().add( new PitRenderer(100, 20, loot));
+
+        Shadow s = new Shadow(pit.pieces, pit.x, pit.y);
+        draw.draw.add(s);
+
+
+        for(PieceRenderer pcrr: pit.renderers){
+            draw.draw.add(pcrr);
+        }
+
+        GUIController controller = new GUIController(pit, s,frame);
+        frame.getContentPane().addMouseListener(controller);
+        frame.getContentPane().addMouseMotionListener(controller);
+
+
 
         frame.setVisible(true);
 

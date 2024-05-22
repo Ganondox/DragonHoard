@@ -6,14 +6,22 @@ public class PieceRenderer extends JComponent {
     int x;
     int y;
 
+    int homex;
+    int homey;
+
     static final int CELL_SIZE = 10;
 
     Polynomio piece;
 
+    boolean selected = false;
+
     public PieceRenderer(int x, int y, Polynomio piece) {
         this.x = x;
         this.y = y;
+        homex = x;
+        homey = y;
         this.piece = piece;
+
     }
 
     public void paint(Graphics g)    {
@@ -42,6 +50,7 @@ public class PieceRenderer extends JComponent {
                         default:
                             break;
                     }
+                    if(selected) g.setColor(makeTranslucent(g.getColor()));
                     g.fillRect(x + j * CELL_SIZE, y + i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 
                 }
@@ -51,4 +60,15 @@ public class PieceRenderer extends JComponent {
 
     }
 
+    public void goHome(){
+        x = homex;
+        y = homey;
+    }
+
+    Color makeTranslucent(Color original){
+        float red = original.getRed()/256.0f;
+        float green = original.getGreen()/256.0f;
+        float blue = original.getBlue()/256.0f;
+        return new Color(red, green, blue ,0.5f);
+    }
 }

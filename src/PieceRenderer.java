@@ -25,35 +25,38 @@ public class PieceRenderer extends JComponent {
     }
 
     public void paint(Graphics g)    {
-        for (int i = 0; i < piece.getHeight(); i++){
-            for(int j = 0; j < piece.getWidth(); j++) {
-                if(piece.substance[i][j] != null){
-                    switch (piece.substance[i][j]) {
-                        case gems:
-                            g.setColor(Color.RED);
-                            break;
-                        case bronze:
-                            g.setColor(Color.ORANGE);
-                            break;
-                        case gold:
-                            g.setColor(Color.YELLOW);
-                            break;
-                        case fossils:
-                            g.setColor(Color.GREEN);
-                            break;
-                        case silver:
-                            g.setColor(Color.CYAN);
-                            break;
-                        case artifacts:
-                            g.setColor(Color.MAGENTA);
-                            break;
-                        default:
-                            break;
-                    }
-                    if(selected) g.setColor(makeTranslucent(g.getColor()));
-                    g.fillRect(x + j * CELL_SIZE, y + i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        if(piece != null) {
+            for (int i = 0; i < piece.getHeight(); i++) {
+                for (int j = 0; j < piece.getWidth(); j++) {
+                    if (piece.substance[i][j] != null) {
+                        switch (piece.substance[i][j]) {
+                            case gems:
+                                g.setColor(Color.RED);
+                                break;
+                            case bronze:
+                                g.setColor(Color.ORANGE);
+                                break;
+                            case gold:
+                                g.setColor(Color.YELLOW);
+                                break;
+                            case fossils:
+                                g.setColor(Color.GREEN);
+                                break;
+                            case silver:
+                                g.setColor(Color.CYAN);
+                                break;
+                            case artifacts:
+                                g.setColor(Color.MAGENTA);
+                                break;
+                            default:
+                                break;
+                        }
+                        if (selected) g.setColor(makeTranslucent(g.getColor()));
+                        g.fillRect(x + j * CELL_SIZE, y + i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 
+                    }
                 }
+
             }
 
         }

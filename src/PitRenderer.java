@@ -7,7 +7,7 @@ public class PitRenderer extends JComponent {
 
     PieceRenderer[][] pieces;
     List<PieceRenderer> renderers;
-     static final int WIDTH = 20;
+     static final int PIT_WIDTH = 20;
 
      int x;
      int y;
@@ -20,15 +20,15 @@ public class PitRenderer extends JComponent {
         renderers = new LinkedList<>();
         List<PieceRenderer[]> pieceMolder = new LinkedList<>();
         for(Polynomio p :pit){
-            if(offset + p.getWidth() > WIDTH){
+            if(offset + p.getWidth() > PIT_WIDTH){
                 //start new row
                 offset = 0;
                 height = 0;
-                pieceMolder.add(new PieceRenderer[WIDTH]);
+                pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
             }
             while(height < p.getHeight()){
                 //expand row
-                pieceMolder.add(new PieceRenderer[WIDTH]);
+                pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
                 height++;
             }
             //add piece to mold
@@ -42,7 +42,7 @@ public class PitRenderer extends JComponent {
             renderers.add(pr);
 
         }
-        pieces = new PieceRenderer[pieceMolder.size()][WIDTH];
+        pieces = new PieceRenderer[pieceMolder.size()][PIT_WIDTH];
         for(int i = 0; i < pieceMolder.size(); i++){
             pieces[i] = pieceMolder.get(i);
         }
@@ -51,7 +51,7 @@ public class PitRenderer extends JComponent {
     public void paint(Graphics g)    {
 
         for(int i = 0; i < pieces.length; i++){
-            for(int j = 0; j < WIDTH; j++){
+            for(int j = 0; j < PIT_WIDTH; j++){
                 if((i + j)% 2 == 0){
                     g.setColor(Color.GRAY);
                 } else {

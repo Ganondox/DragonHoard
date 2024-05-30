@@ -56,15 +56,15 @@ public class GUITest  {
         }
 
         PitRenderer pit = new PitRenderer(100, 20, loot);
-        draw.draw.add(pit);
+        draw.add(new Drawable(pit, Drawable.GROUND));
 
 
         Shadow s = new Shadow(pit.pieces, pit.x, pit.y);
-        draw.draw.add(s);
+        draw.add(new Drawable(s, Drawable.SHADOW));
 
 
         for(PieceRenderer pcrr: pit.renderers){
-            draw.draw.add(pcrr);
+            draw.add(new Drawable(pcrr, Drawable.PIECE));
         }
 
         GUIController controller = new GUIController(pit, s,frame);
@@ -72,8 +72,22 @@ public class GUITest  {
         frame.getContentPane().addMouseMotionListener(controller);
 
 
+        CaveFactory cf = new CaveFactory();
+        CaveRenderer caveRenderer = new CaveRenderer(cf.MakeCave(), 500, 500);
+
+        draw.add(new Drawable(caveRenderer, Drawable.GROUND));
+
+        controller.caves = new CaveRenderer[1];
+        controller.caves[0] = caveRenderer;
+        //CaveController cc = new CaveController();
+        //frame.getContentPane().addMouseListener(cc);
+
+        draw.add(new Drawable(new KeyInstructions(), Drawable.TEXT));
+
+        frame.addKeyListener(controller);
 
         frame.setVisible(true);
+
 
     }
 

@@ -20,7 +20,7 @@ public class Shadow extends JComponent {
 
     public void test(){
         good = true;
-        if(pit.length > y + piece.piece.getHeight() && pit[0].length > x + piece.piece.getWidth()) {
+        if(pit.length >= y + piece.piece.getHeight() && pit[0].length >= x + piece.piece.getWidth()) {
             for (int i = 0; i < piece.piece.getWidth(); i++) {
                 for (int j = 0; j < piece.piece.getHeight(); j++) {
                     if (piece.piece.substance[j][i] != null) {

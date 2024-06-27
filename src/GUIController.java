@@ -185,8 +185,14 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
                     set = false;
                     cur.cave.addPolynomio(piece.piece, (piece.x - cur.x)/PieceRenderer.CELL_SIZE, (piece.y - cur.y)/PieceRenderer.CELL_SIZE);
                     piece.piece = null;
+                    cur.hoard.hoard = cur.cave.getHoard();
+                    if(cur.player != null) {
+                        cur.player.dragonRenderer.hoard = cur.cave.getHoard();
+                    }
                     cur = null;
                     rotations = 0;
+
+                    frame.repaint();
 
                 }
                 break;

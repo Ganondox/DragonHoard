@@ -9,6 +9,10 @@ public class CaveRenderer extends JComponent {
     PieceRenderer[][] mask;
     PieceRenderer rock;
 
+    HoardRenderer hoard;
+
+    PlayerRenderer player;
+
 
     public CaveRenderer(Cave cave, int x, int y) {
         this.cave = cave;
@@ -23,6 +27,9 @@ public class CaveRenderer extends JComponent {
                 }
             }
         }
+
+        hoard = new HoardRenderer(cave.getHoard(),x, y + (cave.board.length+1)*PieceRenderer.CELL_SIZE);
+        player = null;
     }
 
     public void paint(Graphics g) {
@@ -31,34 +38,34 @@ public class CaveRenderer extends JComponent {
                 if (cave.board[i][j] != null) {
                     switch (cave.board[i][j]) {
                         case gems:
-                            g.setColor(Color.RED);
+                            g.setColor(Color.RED.darker());
                             break;
                         case bronze:
-                            g.setColor(Color.ORANGE);
+                            g.setColor(Color.ORANGE.darker());
                             break;
                         case gold:
-                            g.setColor(Color.YELLOW);
+                            g.setColor(Color.YELLOW.darker());
                             break;
                         case fossils:
-                            g.setColor(Color.GREEN);
+                            g.setColor(Color.GREEN.darker());
                             break;
                         case silver:
-                            g.setColor(Color.CYAN);
+                            g.setColor(Color.CYAN.darker());
                             break;
                         case artifacts:
-                            g.setColor(Color.MAGENTA);
+                            g.setColor(Color.MAGENTA.darker());
                             break;
                         case rock:
-                            g.setColor(Color.RED.darker());
+                            g.setColor(Color.RED.darker().darker());
                         default:
                             break;
                     }
 
                 } else {
                     if( (i + j) % 2 == 0){
-                        g.setColor(Color.ORANGE.darker().darker());
+                        g.setColor(Color.ORANGE.darker().darker().darker());
                     } else {
-                        g.setColor(Color.ORANGE.darker());
+                        g.setColor(Color.ORANGE.darker().darker());
                     }
 
                 }

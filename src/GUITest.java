@@ -10,7 +10,7 @@ public class GUITest  {
 
 
         JFrame frame = new JFrame("GUITest");
-        frame.setSize(600, 600);
+        frame.setSize(1000, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Drawer draw = new Drawer();
@@ -73,20 +73,46 @@ public class GUITest  {
 
 
         CaveFactory cf = new CaveFactory();
-        CaveRenderer caveRenderer = new CaveRenderer(cf.MakeCave(), 500, 500);
+        //CaveRenderer caveRenderer = new CaveRenderer(cf.MakeCave(), 400, 400);
 
-        draw.add(new Drawable(caveRenderer, Drawable.GROUND));
+        DragonFactory df = new DragonFactory();
+        Dragon dragon = df.makeDragon();
+
+
+        Player player = new Player();
+        player.name = "play";
+        player.board = cf.MakeCave();
+        player.score = df.makeDragon();
+
+        PlayerRenderer pray = new PlayerRenderer(player, 400, 100);
+
+        draw.add(new Drawable(pray, Drawable.TEXT));
+        draw.add(new Drawable(pray.caveRenderer, Drawable.GROUND));
+
+
 
         controller.caves = new CaveRenderer[1];
-        controller.caves[0] = caveRenderer;
+        controller.caves[0] = pray.caveRenderer;
         //CaveController cc = new CaveController();
         //frame.getContentPane().addMouseListener(cc);
 
+
         draw.add(new Drawable(new KeyInstructions(), Drawable.TEXT));
+
+        draw.add(new Drawable(pray.caveRenderer.hoard, Drawable.TEXT));
+
+
+        //DragonRenderer dragonRenderer = new DragonRenderer(dragon, 300,300 );
+
+        //pray.dragonRenderer.hoard = new Hoard();
+
+        draw.add(new Drawable(pray.dragonRenderer, Drawable.TEXT));
+
 
         frame.addKeyListener(controller);
 
         frame.setVisible(true);
+
 
 
     }

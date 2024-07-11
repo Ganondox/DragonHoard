@@ -43,7 +43,7 @@ public class Test {
 
 
         System.out.println("Begining Game");
-        new GameController().runGame();
+        //new GameController().runGame();
 
     }
 

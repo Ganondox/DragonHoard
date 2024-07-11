@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class GreedyDragon extends AI{
 
     int rot;
@@ -122,6 +124,13 @@ public class GreedyDragon extends AI{
 
     @Override
     int getPoly() {
+
+        try{
+            TimeUnit.SECONDS.sleep(1);
+        }catch (Exception e){
+
+        }
+
         int max = 0;
         int value = 0;
         for(int i = 0; i < game.lootpit.size(); i++){
@@ -165,6 +174,7 @@ public class GreedyDragon extends AI{
 
     @Override
     void chooseComb(Cave c1, Cave c2, Dragon d1, Dragon d2) {
+
         int value = d1.score(c1.getHoard());
         player.score = d1;
         player.board = c1;

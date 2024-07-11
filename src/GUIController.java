@@ -17,6 +17,59 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
     JFrame frame;
     int rotations = 0;
 
+    Game game;
+    Drawer draw;
+
+    public GUIController(JFrame frame, Game game, Drawer draw) {
+        this.frame = frame;
+        this.game = game;
+        this.draw = draw;
+
+        //create loot pit
+        PitRenderer pit = new PitRenderer(100, 20, game.lootpit);
+        draw.add(new Drawable(pit, Drawable.GROUND));
+
+
+        Shadow s = new Shadow(pit.pieces, pit.x, pit.y);
+        draw.add(new Drawable(s, Drawable.SHADOW));
+
+
+        for(PieceRenderer pcrr: pit.renderers){
+            draw.add(new Drawable(pcrr, Drawable.PIECE));
+        }
+
+        this.pit = pit;
+        this.shadow = s;
+
+        frame.getContentPane().addMouseListener(this);
+        frame.getContentPane().addMouseMotionListener(this);
+
+
+
+        caves = new CaveRenderer[game.players.size()];
+
+        int i = 0;
+        int PLAYER_HEIGHT = 150;
+        for(Player p: game.players){
+            PlayerRenderer player = new PlayerRenderer(p, 400, 100 + i*PLAYER_HEIGHT);
+
+            draw.add(new Drawable(player, Drawable.TEXT));
+            draw.add(new Drawable(player.caveRenderer, Drawable.GROUND));
+
+            draw.add(new Drawable(new TurnRender(game,550, 50), Drawable.TEXT));
+
+            caves[i] = player.caveRenderer;
+
+            draw.add(new Drawable(player.caveRenderer.hoard, Drawable.TEXT));
+            draw.add(new Drawable(player.dragonRenderer, Drawable.TEXT));
+
+            i++;
+        }
+
+        draw.add(new Drawable(new KeyInstructions(), Drawable.TEXT));
+
+
+    }
 
     public GUIController(PitRenderer pit) {
         this.pit = pit;
@@ -175,6 +228,33 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
 
     }
 
+    void endTurn(){
+
+
+
+        set = false;
+        if(piece != null);
+        piece.piece = null;
+        if(cur != null) {
+            cur.hoard.hoard = cur.cave.getHoard();
+            if (cur.player != null) {
+                cur.player.dragonRenderer.hoard = cur.cave.getHoard();
+            }
+            cur = null;
+        }
+        rotations = 0;
+
+        if(game != null) {
+            pit.reset(game.lootpit);
+            for (PieceRenderer p : pit.renderers) {
+                draw.add(new Drawable(p, Drawable.PIECE));
+            }
+            if(game.players.size() > 0 &&!(game.players.get(game.turn).controller instanceof GUIPlayer)) cur = caves[game.turn];
+        }
+
+        frame.repaint();
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println(e.getKeyChar());
@@ -182,17 +262,31 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
             case 's':
                 System.out.println("set");
                 if(set){
-                    set = false;
-                    cur.cave.addPolynomio(piece.piece, (piece.x - cur.x)/PieceRenderer.CELL_SIZE, (piece.y - cur.y)/PieceRenderer.CELL_SIZE);
-                    piece.piece = null;
-                    cur.hoard.hoard = cur.cave.getHoard();
-                    if(cur.player != null) {
-                        cur.player.dragonRenderer.hoard = cur.cave.getHoard();
-                    }
-                    cur = null;
-                    rotations = 0;
+                    if(game == null) {
 
-                    frame.repaint();
+                        cur.cave.addPolynomio(piece.piece, (piece.x - cur.x) / PieceRenderer.CELL_SIZE, (piece.y - cur.y) / PieceRenderer.CELL_SIZE);
+                        endTurn();
+                    } else {
+                       /*
+                        if(game.makeTurn(cur.player.player,i,rotations, (piece.x - cur.x) / PieceRenderer.CELL_SIZE, (piece.y - cur.y) / PieceRenderer.CELL_SIZE )){
+
+                        }
+                        */
+                        if(cur.player.player.controller instanceof GUIPlayer){
+                            GUIPlayer player = (GUIPlayer)cur.player.player.controller;
+                            if(player == game.players.get(game.turn).controller){
+                                //find piece in lootpit
+                                int i = 0;
+                                for(Polynomio p: game.lootpit){
+                                    if (p.equals(piece.piece) ) break;
+                                    i++;
+                                }
+                                player.move = new Move(i, 0, (piece.x - cur.x) / PieceRenderer.CELL_SIZE, (piece.y - cur.y) / PieceRenderer.CELL_SIZE);
+                                //endTurn(); covered in the game controller
+                            }
+                        }
+
+                    }
 
                 }
                 break;

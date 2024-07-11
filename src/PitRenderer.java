@@ -12,40 +12,51 @@ public class PitRenderer extends JComponent {
      int x;
      int y;
 
+     void init(List<Polynomio> pit){
+         int offset = 0;
+         int height = 0;
+         renderers = new LinkedList<>();
+         List<PieceRenderer[]> pieceMolder = new LinkedList<>();
+         for(Polynomio p :pit){
+             if(offset + p.getWidth() > PIT_WIDTH){
+                 //start new row
+                 offset = 0;
+                 height = 0;
+                 pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
+             }
+             while(height < p.getHeight()){
+                 //expand row
+                 pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
+                 height++;
+             }
+             //add piece to mold
+             PieceRenderer pr = new PieceRenderer( x + offset * PieceRenderer.CELL_SIZE, y + PieceRenderer.CELL_SIZE * (pieceMolder.size() - height), p);
+             for (int i = 0; i < p.getHeight(); i++) {
+                 for (int j = 0; j < p.getWidth(); j++) {
+                     if(p.substance[i][j] != null) pieceMolder.get(pieceMolder.size() - height + i)[j+offset] = pr;
+                 }
+             }
+             offset += p.getWidth() + 1;
+             renderers.add(pr);
+
+         }
+         pieces = new PieceRenderer[pieceMolder.size()][PIT_WIDTH];
+         for(int i = 0; i < pieceMolder.size(); i++){
+             pieces[i] = pieceMolder.get(i);
+         }
+     }
+
     public PitRenderer(int ix, int iy,List<Polynomio> pit) {
          x = ix;
          y = iy;
-        int offset = 0;
-        int height = 0;
-        renderers = new LinkedList<>();
-        List<PieceRenderer[]> pieceMolder = new LinkedList<>();
-        for(Polynomio p :pit){
-            if(offset + p.getWidth() > PIT_WIDTH){
-                //start new row
-                offset = 0;
-                height = 0;
-                pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
-            }
-            while(height < p.getHeight()){
-                //expand row
-                pieceMolder.add(new PieceRenderer[PIT_WIDTH]);
-                height++;
-            }
-            //add piece to mold
-            PieceRenderer pr = new PieceRenderer( x + offset * PieceRenderer.CELL_SIZE, y + PieceRenderer.CELL_SIZE * (pieceMolder.size() - height), p);
-            for (int i = 0; i < p.getHeight(); i++) {
-                for (int j = 0; j < p.getWidth(); j++) {
-                    if(p.substance[i][j] != null) pieceMolder.get(pieceMolder.size() - height + i)[j+offset] = pr;
-                }
-            }
-            offset += p.getWidth() + 1;
-            renderers.add(pr);
+        init(pit);
+    }
 
-        }
-        pieces = new PieceRenderer[pieceMolder.size()][PIT_WIDTH];
-        for(int i = 0; i < pieceMolder.size(); i++){
-            pieces[i] = pieceMolder.get(i);
-        }
+    void reset(List<Polynomio> pit){
+         for(PieceRenderer p: renderers){
+             p.piece = null;
+         }
+         init(pit);
     }
 
     public void paint(Graphics g)    {
@@ -62,12 +73,6 @@ public class PitRenderer extends JComponent {
 
             }
         }
-
-        /*for(PieceRenderer p: renderers){
-            p.paint(g);
-        }
-
-         */
     }
 
 

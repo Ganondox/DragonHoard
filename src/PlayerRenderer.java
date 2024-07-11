@@ -9,13 +9,15 @@ public class PlayerRenderer extends JComponent {
     int x;
     int y;
 
+    int HOARD_WIDTH = 200;
+
     public PlayerRenderer(Player player, int x, int y) {
         this.player = player;
         this.x = x;
         this.y = y;
-        caveRenderer = new CaveRenderer(player.board, x , y + DragonRenderer.textHeight);
+        caveRenderer = new CaveRenderer(player.board, x, y + DragonRenderer.textHeight);
         caveRenderer.player = this;
-        dragonRenderer = new DragonRenderer(player.score, x, y+(player.board.board.length+1)*PieceRenderer.CELL_SIZE+2*DragonRenderer.textHeight);
+        dragonRenderer = new DragonRenderer(player.score, x + HOARD_WIDTH, y+DragonRenderer.textHeight);
         dragonRenderer.hoard = caveRenderer.cave.getHoard();
 
     }

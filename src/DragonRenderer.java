@@ -10,7 +10,7 @@ public class DragonRenderer extends JComponent {
     int y;
 
     static int textWidth = 30;
-    static int textHeight= 20;
+    static int textHeight= 15;
 
     Hoard hoard;
 

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DragonHoard:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DragonHoard_jar</output-path>
+    <root id="archive" name="DragonHoard.jar">
+      <element id="module-output" name="DragonHoard" />
+    </root>
+  </artifact>
+</component>

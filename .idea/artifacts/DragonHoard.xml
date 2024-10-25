@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="DragonHoard">
+    <output-path>$PROJECT_DIR$/out/artifacts/DragonHoard</output-path>
+    <root id="root">
+      <element id="archive" name="DragonHoard.jar">
+        <element id="module-output" name="DragonHoard" />
+      </element>
+    </root>
+  </artifact>
+</component>

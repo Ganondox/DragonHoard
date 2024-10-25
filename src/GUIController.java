@@ -20,6 +20,8 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
     Game game;
     Drawer draw;
 
+    boolean active = true; //
+
     public GUIController(JFrame frame, Game game, Drawer draw) {
         this.frame = frame;
         this.game = game;
@@ -88,42 +90,45 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
 
     public void mousePressed(MouseEvent e) {
 
-        //reset piece on cancel
-        if(set) {
-            set = false;
-            shadow.x = ((oldx - pit.x)/PieceRenderer.CELL_SIZE);
-            shadow.y = ((oldy - pit.y)/PieceRenderer.CELL_SIZE);
-            shadow.pit = pit.pieces;
-            shadow.pitx = pit.x;
-            shadow.pity = pit.y;
-            placePiece(true);
-        }
+        if( game == null || active) {
+            //reset piece on cancel
+            if (set) {
+                set = false;
+                shadow.x = ((oldx - pit.x) / PieceRenderer.CELL_SIZE);
+                shadow.y = ((oldy - pit.y) / PieceRenderer.CELL_SIZE);
+                shadow.pit = pit.pieces;
+                shadow.pitx = pit.x;
+                shadow.pity = pit.y;
+                placePiece(true);
+            }
 
-        System.out.println("clicked");
-        System.out.println(e.getX());
-        int x = ((e.getX() - pit.x)/PieceRenderer.CELL_SIZE);
-        int y = ((e.getY() - pit.y)/PieceRenderer.CELL_SIZE);
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(pit.pieces.length);
-        System.out.println(pit.pieces[0].length);
-        piece = pit.pieces[y][x];
-        piece.selected = true;
-        System.out.println(piece);
+            System.out.println("clicked");
+            System.out.println(e.getX());
+            int x = ((e.getX() - pit.x) / PieceRenderer.CELL_SIZE);
+            int y = ((e.getY() - pit.y) / PieceRenderer.CELL_SIZE);
+            System.out.println(x);
+            System.out.println(y);
+            System.out.println(pit.pieces.length);
+            System.out.println(pit.pieces[0].length);
+            piece = pit.pieces[y][x];
+            piece.selected = true;
+            System.out.println(piece);
+        }
     }
 
-    public void mouseDragged(MouseEvent e){
-        if(piece != null) {
-            piece.x = e.getX();
-            piece.y = e.getY();
-            System.out.println("drag");
+    public void mouseDragged(MouseEvent e) {
+        if (game == null || active) {
+            if (piece != null) {
+                piece.x = e.getX();
+                piece.y = e.getY();
+                System.out.println("drag");
 
-            //target
-           setShadow(e);
+                //target
+                setShadow(e);
 
 
-
-            frame.repaint();
+                frame.repaint();
+            }
         }
     }
 
@@ -217,9 +222,11 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
     }
 
     public void mouseReleased(MouseEvent e){
-        if(piece != null){
-            setShadow(e);
-            placePiece(false);
+        if(game == null || active) {
+            if (piece != null) {
+                setShadow(e);
+                placePiece(false);
+            }
         }
     }
 
@@ -233,8 +240,7 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
 
 
         set = false;
-        if(piece != null);
-        piece.piece = null;
+        if(piece != null) piece.piece = null;
         if(cur != null) {
             cur.hoard.hoard = cur.cave.getHoard();
             if (cur.player != null) {
@@ -249,9 +255,14 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
             for (PieceRenderer p : pit.renderers) {
                 draw.add(new Drawable(p, Drawable.PIECE));
             }
-            if(game.players.size() > 0 &&!(game.players.get(game.turn).controller instanceof GUIPlayer)) cur = caves[game.turn];
+            if(game.players.size() > 0)
+            {
+                active = game.players.get(game.turn).controller instanceof GUIPlayer;
+                if(!active) cur = caves[game.turn];
+            }
         }
 
+        shadow.visible = false;
         frame.repaint();
     }
 
@@ -282,7 +293,7 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
                                     i++;
                                 }
                                 player.move = new Move(i, 0, (piece.x - cur.x) / PieceRenderer.CELL_SIZE, (piece.y - cur.y) / PieceRenderer.CELL_SIZE);
-                                //endTurn(); covered in the game controller
+                                 //endTurn(); covered in the game controller
                             }
                         }
 
@@ -291,9 +302,11 @@ public class GUIController extends MouseInputAdapter implements KeyListener {
                 }
                 break;
             case 'k':
-                if(piece != null && !set){
-                    piece.piece.rotate90();
-                    rotations++;
+                if(game == null ||active) {
+                    if (piece != null && !set) {
+                        piece.piece.rotate90();
+                        rotations++;
+                    }
                 }
         }
     }

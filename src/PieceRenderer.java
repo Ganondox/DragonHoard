@@ -68,7 +68,7 @@ public class PieceRenderer extends JComponent {
         y = homey;
     }
 
-    Color makeTranslucent(Color original){
+    public static Color makeTranslucent(Color original){
         float red = original.getRed()/256.0f;
         float green = original.getGreen()/256.0f;
         float blue = original.getBlue()/256.0f;
